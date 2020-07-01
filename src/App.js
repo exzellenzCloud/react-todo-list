@@ -1,26 +1,28 @@
-import React from "react";
 import logo from "./logo.svg";
-import uuid from "uuid";
+import uuid from "uuid/dist/v4";
 import "bootstrap/dist/css/bootstrap.min.css";
 import TodoInput from "./Components/TodoInput";
 import TodoList from "./Components/TodoList";
+import React, { Component } from 'react'
 
-function App() {
+export default class App extends Component {
+  
 state ={
   items:[{id:1,title:'wake up'},
-  {id:1,title:'sleep'}]
-}
+  {id:2,title:'sleep'}],
+  id: uuid(),
+  item:'',
+  editItem:false 
+};
 
-
-
-  return (
-    <div className="container">
-      <div className="row">
-        <TodoInput />
-        <TodoList />
+  render() {
+    return (
+      <div className="container">
+        <div className="row">
+          <TodoInput />
+          <TodoList />
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
-
-export default App;
