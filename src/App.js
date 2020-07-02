@@ -10,7 +10,7 @@ export default class App extends Component {
     items: [],
     id: uuid(),
     item: "",
-    editItem: false,
+    editItem: false
   };
 
   handleChange = (e) => {
@@ -21,48 +21,45 @@ export default class App extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const newItem ={
-      id:this.state.id,
-      title:this.state.item
-    }
+    const newItem = {
+      id: this.state.id,
+      title: this.state.item,
+    };
 
-    const updatedItems = [...this.state.items,newItem]
+    const updatedItems = [...this.state.items, newItem];
 
     this.setState({
-      items:updatedItems,
-      item:'',
-      id:uuid(),
-      editItem:false
-    })
+      items: updatedItems,
+      item: "",
+      id: uuid(),
+      editItem: false
+    });
   };
 
   clearList = (e) => {
     this.setState({
-      items:[]
-    })
+      items: [],
+    });
   };
 
   handleEdit = (id) => {
-    const filteredItems= this.state.items.filter(item => item.id !== id)
-    const selectedItem = this.state.items.find(item=>item.id === id);
-    
+    const filteredItems = this.state.items.filter((item) => item.id !== id);
+    const selectedItem = this.state.items.find((item) => item.id === id);
+
     this.setState({
-      items:filteredItems,
-      item:selectedItem.title,
-      id:id,
-      editItem:true
-    })
-
-
-
+      editItem: true,
+      items: filteredItems,
+      item: selectedItem.title,
+      id: id
+    });
   };
 
   handleDelete = (id) => {
-    const filteredItems= this.state.items.filter(item => item.id !== id)
+    const filteredItems = this.state.items.filter((item) => item.id !== id);
 
     this.setState({
-      items:filteredItems
-    })
+      items: filteredItems,
+    });
   };
 
   render() {
@@ -79,6 +76,7 @@ export default class App extends Component {
                   handleSubmit={this.handleSubmit}
                   handleEdit={this.handleEdit}
                   handleDelete={this.handleDelete}
+                  editItem={this.state.editItem}
                 />
                 <TodoList
                   items={this.state.items}
