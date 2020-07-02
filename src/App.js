@@ -7,10 +7,7 @@ import React, { Component } from "react";
 
 export default class App extends Component {
   state = {
-    items: [
-      { id: 1, title: "wake up" },
-      { id: 2, title: "sleep" },
-    ],
+    items: [],
     id: uuid(),
     item: "",
     editItem: false,
@@ -39,11 +36,34 @@ export default class App extends Component {
     })
   };
 
-  clearList = (e) => {};
+  clearList = (e) => {
+    this.setState({
+      items:[]
+    })
+  };
 
-  handleEdit = (id) => {};
+  handleEdit = (id) => {
+    const filteredItems= this.state.items.filter(item => item.id !== id)
+    const selectedItem = this.state.items.find(item=>item.id === id);
+    
+    this.setState({
+      items:filteredItems,
+      item:selectedItem.title,
+      id:id,
+      editItem:true
+    })
 
-  handleDelete = (id) => {};
+
+
+  };
+
+  handleDelete = (id) => {
+    const filteredItems= this.state.items.filter(item => item.id !== id)
+
+    this.setState({
+      items:filteredItems
+    })
+  };
 
   render() {
     return (
